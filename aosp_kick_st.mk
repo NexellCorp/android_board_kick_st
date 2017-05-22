@@ -26,6 +26,9 @@ PRODUCT_MANUFACTURER := NEXELL
 
 PRODUCT_COPY_FILES += device/nexell/kick_st/fstab.kick_st:root/fstab.kick_st
 
+# After Bluetooth HAL works well, remove below line
+PRODUCT_DEFAULT_PROPERTY_OVERRIDES += config.disable_bluetooth=true
+
 $(call inherit-product, device/nexell/kick_st/device.mk)
 
 PRODUCT_PACKAGES += \
