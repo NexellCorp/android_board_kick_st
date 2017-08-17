@@ -14,11 +14,50 @@
 # limitations under the License.
 #
 
+PRODUCT_SHIPPING_API_LEVEL := 25
+
+PRODUCT_PACKAGES := \
+    AccountAndSyncSettings \
+    DeskClock \
+    AlarmProvider \
+    Calculator \
+    Calendar \
+    Camera \
+    CertInstaller \
+    Email \
+    Gallery2 \
+    LatinIME \
+    Provision \
+    QuickSearchBox \
+    Settings \
+    Sync \
+    SystemUI \
+    CalendarProvider \
+    SyncProvider \
+	Stk
+
+# Live Wallpapers
+PRODUCT_PACKAGES += \
+	LiveWallpapers \
+	LiveWallpapersPicker \
+	VisualizationWallpapers \
+	librs_jni
+
+# Filesystem management tools
+PRODUCT_PACKAGES += \
+    make_ext4fs \
+    setup_fs
+
+# Recovery
+PRODUCT_PACKAGES += \
+	librecovery_updater_nexell
+
 PRODUCT_COPY_FILES += \
 	device/nexell/kick_st/init.kick_st.rc:root/init.kick_st.rc \
 	device/nexell/kick_st/init.kick_st.usb.rc:root/init.kick_st.usb.rc \
 	device/nexell/kick_st/fstab.kick_st:root/fstab.kick_st \
-	device/nexell/kick_st/ueventd.kick_st.rc:root/ueventd.kick_st.rc
+	device/nexell/kick_st/ueventd.kick_st.rc:root/ueventd.kick_st.rc \
+	device/nexell/kick_st/init.recovery.kick_st.rc:root/init.recovery.kick_st.rc
 
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
@@ -37,7 +76,42 @@ PRODUCT_COPY_FILES += \
 
 PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
-	device/nexell/kick_st/media_codecs.xml:system/etc/media_codecs.xml
+	device/nexell/kick_st/media_codecs.xml:system/etc/media_codecs.xml \
+	device/nexell/kick_st/media_profiles.xml:system/etc/media_profiles.xml
+
+# ffmpeg libraries
+EN_FFMPEG_EXTRACTOR := true
+EN_FFMPEG_AUDIO_DEC := true
+
+ifeq ($(EN_FFMPEG_EXTRACTOR),true)
+
+PRODUCT_COPY_FILES += \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavcodec.so:system/lib/libavcodec.so    \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavcodec.so.55:system/lib/libavcodec.so.55    \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavcodec.so.55.39.101:system/lib/libavcodec.so.55.39.101    \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavdevice.so:system/lib/libavdevice.so  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavdevice.so.55:system/lib/libavdevice.so.55  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavdevice.so.55.5.100:system/lib/libavdevice.so.55.5.100  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavfilter.so:system/lib/libavfilter.so  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavfilter.so.3:system/lib/libavfilter.so.3  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavfilter.so.3.90.100:system/lib/libavfilter.so.3.90.100  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavformat.so:system/lib/libavformat.so  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavformat.so.55:system/lib/libavformat.so.55  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavformat.so.55.19.104:system/lib/libavformat.so.55.19.104  \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavresample.so:system/lib/libavresample.so      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavresample.so.1:system/lib/libavresample.so.1      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavresample.so.1.1.0:system/lib/libavresample.so.1.1.0      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavutil.so:system/lib/libavutil.so      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavutil.so.52:system/lib/libavutil.so.52      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libavutil.so.52.48.101:system/lib/libavutil.so.52.48.101      \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswresample.so:system/lib/libswresample.so \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswresample.so.0:system/lib/libswresample.so.0 \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswresample.so.0.17.104:system/lib/libswresample.so.0.17.104 \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswscale.so:system/lib/libswscale.so \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswscale.so.2:system/lib/libswscale.so.2 \
+	hardware/nexell/s5pxx18/omx/codec/ffmpeg/32bit/libs/libswscale.so.2.5.101:system/lib/libswscale.so.2.5.101
+
+endif	#EN_FFMPEG_EXTRACTOR
 
 # input
 PRODUCT_COPY_FILES += \
@@ -53,13 +127,20 @@ PRODUCT_COPY_FILES += \
 	frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
 	frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
 	frameworks/native/data/etc/android.hardware.audio.low_latency.xml:system/etc/permissions/android.hardware.audio.low_latency.xml \
-	frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml
+	frameworks/native/data/etc/android.hardware.faketouch.xml:system/etc/permissions/android.hardware.faketouch.xml
+
+# wallpaper
+PRODUCT_COPY_FILES += \
+	device/nexell/kick_st/wallpaper:/data/system/users/0/wallpaper \
+	device/nexell/kick_st/wallpaper_orig:/data/system/users/0/wallpaper_orig \
+	device/nexell/kick_st/wallpaper_info.xml:/data/system/users/0/wallpaper_info.xml
 
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_AAPT_CONFIG := normal
+PRODUCT_AAPT_CONFIG += mdpi hdpi xlarge large
 PRODUCT_AAPT_PREF_CONFIG := hdpi
-PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi
+PRODUCT_AAPT_PREBUILT_DPI := xxhdpi xhdpi hdpi mdpi ldpi
 PRODUCT_CHARACTERISTICS := tablet
 
 # OpenGL ES API version: 2.0
@@ -86,7 +167,9 @@ PRODUCT_PACKAGES += \
 	gralloc.kick_st \
 	libGLES_mali \
 	hwcomposer.kick_st \
-	audio.primary.kick_st
+	audio.primary.kick_st \
+	memtrack.kick_st \
+	camera.kick_st
 
 # tinyalsa
 PRODUCT_PACKAGES += \
@@ -118,10 +201,35 @@ $(call inherit-product-if-exists, hardware/realtek/wlan/config/p2p_supplicant.mk
 
 DEVICE_PACKAGE_OVERLAYS := device/nexell/kick_st/overlay
 
-# limit dex2oat threads to improve thermals
+# increase dex2oat threads to improve booting time
 PRODUCT_PROPERTY_OVERRIDES += \
-	dalvik.vm.boot-dex2oat-threads=4 \
-	dalvik.vm.dex2oat-threads=4 \
-	dalvik.vm.image-dex2oat-threads=4
+	dalvik.vm.boot-dex2oat-threads=8 \
+	dalvik.vm.dex2oat-threads=8 \
+	dalvik.vm.image-dex2oat-threads=8
 
-$(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
+#Enabling video for live effects
+-include frameworks/base/data/videos/VideoPackage1.mk
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    dalvik.vm.heapstartsize=16m \
+    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapsize=512m \
+    dalvik.vm.heaptargetutilization=0.75 \
+    dalvik.vm.heapminfree=512k \
+    dalvik.vm.heapmaxfree=8m
+
+# HWUI common settings
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hwui.gradient_cache_size=1 \
+    ro.hwui.drop_shadow_cache_size=6 \
+    ro.hwui.r_buffer_cache_size=8 \
+    ro.hwui.texture_cache_flushrate=0.4 \
+    ro.hwui.text_small_cache_width=1024 \
+    ro.hwui.text_small_cache_height=1024 \
+    ro.hwui.text_large_cache_width=2048 \
+    ro.hwui.text_large_cache_height=1024
+
+#skip boot jars check
+SKIP_BOOT_JARS_CHECK := true
+
+$(call inherit-product, frameworks/base/data/fonts/fonts.mk)
