@@ -45,7 +45,7 @@ on late-fs
     start surfaceflinger
     start audioserver
     start bootanim
-    mount_all ./fstab.avn_ref --late
+    mount_all ./fstab.kick_st --late
 
 on post-fs-data
     setprop vold.post_fs_data_done 1
