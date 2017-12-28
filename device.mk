@@ -64,11 +64,15 @@ PRODUCT_COPY_FILES += \
 	frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
 
 # audio
+USE_XML_AUDIO_POLICY_CONF := 1
 PRODUCT_COPY_FILES += \
-	frameworks/av/services/audiopolicy/config/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
-	frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
-	frameworks/av/services/audiopolicy/config/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
-	frameworks/av/services/audiopolicy/config/default_volume_tables.xml:system/etc/default_volume_tables.xml
+	device/nexell/kick_st/mixer_paths.xml:system/etc/mixer_paths.xml \
+	device/nexell/kick_st/audio_policy_configuration.xml:system/etc/audio_policy_configuration.xml \
+	device/nexell/kick_st/audio_policy_volumes.xml:system/etc/audio_policy_volumes.xml \
+	device/nexell/kick_st/a2dp_audio_policy_configuration.xml:system/etc/a2dp_audio_policy_configuration.xml \
+	device/nexell/kick_st/usb_audio_policy_configuration.xml:system/etc/usb_audio_policy_configuration.xml \
+	device/nexell/kick_st/r_submix_audio_policy_configuration.xml:system/etc/r_submix_audio_policy_configuration.xml \
+	device/nexell/kick_st/default_volume_tables.xml:system/etc/default_volume_tables.xml
 
 PRODUCT_COPY_FILES += \
 	device/nexell/kick_st/audio/tiny_hw.kick_st.xml:system/etc/tiny_hw.kick_st.xml \

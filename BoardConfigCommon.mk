@@ -31,6 +31,7 @@ TARGET_RECOVERY_FSTAB := device/nexell/kick_st/recovery.fstab
 
 BOARD_USES_GENERIC_AUDIO := false
 BOARD_USES_ALSA_AUDIO := false
+BOARD_USES_AUDIO_N := true
 
 BOARD_EGL_CFG := device/nexell/kick_st/egl.cfg
 USE_OPENGL_RENDERER := true
